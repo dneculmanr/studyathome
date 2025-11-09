@@ -2,20 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
-
-
-import { RouterModule } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
 
 // Material
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-
-
 
 @Component({
   selector: 'app-calendario',
@@ -26,10 +19,15 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     FormsModule,
     IonicModule,
+
+    // ✅ Angular Material
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+
+    // ✅ Permite usar routerLink en el HTML
+    RouterModule
   ],
 })
 export class CalendarioPage {
@@ -37,15 +35,15 @@ export class CalendarioPage {
   fechaSeleccionada: any;
   materia: string = "";
   descripcion: string = "";
-
-  // Aquí guardaremos los recordatorios
   recordatorios: { fecha: string; materia: string; descripcion: string }[] = [];
 
   constructor(private router: Router) {}
 
-
   agregarRecordatorio() {
-  if (this.fechaSeleccionada && this.materia.trim() !== "" && this.descripcion.trim() !== "") {
+    if (!this.fechaSeleccionada || !this.materia.trim() || !this.descripcion.trim()) {
+      alert("⚠️ Completa todos los campos antes de guardar.");
+      return;
+    }
 
     const nuevo = {
       fecha: new Date(this.fechaSeleccionada).toLocaleDateString(),
@@ -54,21 +52,11 @@ export class CalendarioPage {
     };
 
     this.recordatorios.push(nuevo);
+    localStorage.setItem("recordatorios", JSON.stringify(this.recordatorios));
 
-    // ✅ Guardar el último recordatorio
-    localStorage.setItem("ultimoRecordatorio", JSON.stringify(nuevo));
-
-    // ✅ Limpiar campos
+    this.fechaSeleccionada = null;
     this.materia = "";
     this.descripcion = "";
-    this.fechaSeleccionada = null;
-
-    // ✅ Navegar a Resumen
-    this.router.navigate(['/resumen']);
-
-  } else {
-    alert("⚠️ Por favor completa todos los campos antes de guardar.");
   }
-}
 
 }

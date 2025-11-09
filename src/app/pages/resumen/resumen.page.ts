@@ -2,26 +2,25 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-// ✅ Lottie
-import { LottieComponent, provideLottieOptions } from 'ngx-lottie';
-import player from 'lottie-web';
+// ✅ Lottie (solo el componente, sin providers aquí)
+import { LottieComponent } from 'ngx-lottie';
 
 @Component({
   selector: 'app-resumen',
   standalone: true,
   templateUrl: './resumen.page.html',
   styleUrls: ['./resumen.page.scss'],
-  imports: [CommonModule, IonicModule, LottieComponent],
-  providers: [
-    provideLottieOptions({
-      player: () => player,
-    }),
+  imports: [
+    CommonModule,
+    IonicModule,
+    LottieComponent
   ],
 })
 export class ResumenPage {
 
   usuario: string = "Invitado";
-  ultimoRecordatorio: any = null;
+  password: string = "****";
+  recordatorios: any[] = [];
 
   animacion = {
     path: 'assets/lottie/study.json',
@@ -30,11 +29,16 @@ export class ResumenPage {
   };
 
   constructor() {
-    const rec = localStorage.getItem("ultimoRecordatorio");
-    if (rec) this.ultimoRecordatorio = JSON.parse(rec);
 
+    // ✅ Recuperar usuario y contraseña
     const user = localStorage.getItem("usuarioActivo");
+    const pass = localStorage.getItem("passwordActivo");
+    
     if (user) this.usuario = user;
-  }
+    if (pass) this.password = pass;
 
+    // ✅ Recuperar recordatorios
+    const data = localStorage.getItem("recordatorios");
+    if (data) this.recordatorios = JSON.parse(data);
+  }
 }

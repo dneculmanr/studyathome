@@ -25,9 +25,14 @@
     <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
   </ion-item>
 
-  <ion-button expand="block" color="success" class="ion-margin-top" (click)="agregarRecordatorio()">
-    Guardar Recordatorio ✅
-  </ion-button>
+<ion-button expand="block" color="success" class="ion-margin-top" (click)="agregarRecordatorio()">
+  Guardar Recordatorio ✅
+</ion-button>
+
+<ion-button expand="block" color="medium" routerLink="/resumen">
+  Ver Resumen 📄
+</ion-button>
+
 
   <h2 class="ion-margin-top">Recordatorios Registrados</h2>
 
