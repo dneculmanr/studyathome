@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Resumen 📚</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="anim-container">
+    <ng-lottie [options]="animacion"></ng-lottie>
+  </div>
+
+  <h2>Bienvenido/a, <strong>{{ usuario }}</strong> 👋</h2>
+
+  <div *ngIf="ultimoRecordatorio; else sinDatos">
+    <h3>Último Recordatorio Guardado</h3>
+    <ion-card>
+      <ion-card-content>
+        <p><strong>Fecha:</strong> {{ ultimoRecordatorio.fecha }}</p>
+        <p><strong>Materia:</strong> {{ ultimoRecordatorio.materia }}</p>
+        <p><strong>Descripción:</strong> {{ ultimoRecordatorio.descripcion }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #sinDatos>
+    <p>📭 Aún no has agregado recordatorios.</p>
+  </ng-template>
+
+</ion-content>
