@@ -28,17 +28,20 @@ export class ResumenPage {
     autoplay: true
   };
 
-  constructor() {
+constructor() {
+  // Recuperar usuario y contraseña
+  const user = localStorage.getItem("usuarioActivo");
+  const pass = localStorage.getItem("passwordActivo");
+  if (user) this.usuario = user;
+  if (pass) this.password = pass;
 
-    // ✅ Recuperar usuario y contraseña
-    const user = localStorage.getItem("usuarioActivo");
-    const pass = localStorage.getItem("passwordActivo");
-    
-    if (user) this.usuario = user;
-    if (pass) this.password = pass;
-
-    // ✅ Recuperar recordatorios
-    const data = localStorage.getItem("recordatorios");
-    if (data) this.recordatorios = JSON.parse(data);
+  // ✅ Recuperar la lista completa de recordatorios
+  const data = localStorage.getItem("recordatorios");
+  if (data) {
+    this.recordatorios = JSON.parse(data);
+  } else {
+    this.recordatorios = [];
   }
+}
+
 }

@@ -51,6 +51,7 @@ export class CalendarioPage {
     if (!this.fechaSeleccionada || !this.materia.trim() || !this.descripcion.trim()) {
       alert("⚠️ Completa todos los campos.");
       return;
+      
     }
 
     const nuevo = {
@@ -60,14 +61,14 @@ export class CalendarioPage {
     };
 
     this.recordatorios.push(nuevo);
-    localStorage.setItem("recordyectos", JSON.stringify(this.recordatorios));
+    localStorage.setItem("recordatorios", JSON.stringify(this.recordatorios));
 
     this.materia = "";
     this.descripcion = "";
     this.fechaSeleccionada = null;
   }
 
-  // ✅ NUEVA FUNCIÓN PARA BORRAR
+
   borrarRecordatorio(index: number) {
     this.recordatorios.splice(index, 1);
     localStorage.setItem("recordatorios", JSON.stringify(this.recordatorios));

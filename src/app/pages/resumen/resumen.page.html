@@ -13,9 +13,9 @@
 <h2>Bienvenido/a, <strong>{{ usuario }}</strong> 👋</h2>
 <p><strong>Tu contraseña:</strong> {{ password }}</p>
 
-<h2 class="ion-margin-top">📚 Recordatorios Guardados:</h2>
+<h2 class="ion-margin-top">Recordatorios Guardados</h2>
 
-<ion-list *ngIf="recordatorios.length > 0; else sinDatos">
+<ion-list *ngIf="recordatorios.length > 0">
   <ion-item *ngFor="let rec of recordatorios">
     <ion-label>
       <h3>{{ rec.fecha }}</h3>
@@ -24,8 +24,10 @@
   </ion-item>
 </ion-list>
 
-<ng-template #sinDatos>
-  <p>📭 Aún no has agregado recordatorios.</p>
-</ng-template>
+<p *ngIf="recordatorios.length === 0">
+  📭 No hay recordatorios guardados aún.
+</p>
+
+
 
 </ion-content>
