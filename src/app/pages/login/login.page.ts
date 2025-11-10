@@ -32,8 +32,18 @@ export class LoginPage {
   constructor(private router: Router) {}
 
   ingresar() {
+
+    // ✅ Validación simple
+    if (this.usuario.trim() === "" || this.password.trim() === "") {
+      alert("⚠️ Debes ingresar un usuario y una contraseña.");
+      return;
+    }
+
+    // ✅ Guardar datos para después mostrarlos en Resumen
     localStorage.setItem("usuarioActivo", this.usuario);
     localStorage.setItem("passwordActivo", this.password);
-    this.router.navigate(['/calendario']);
+
+    // ✅ Ir al menú después de iniciar sesión
+    this.router.navigate(['/menu']);
   }
 }

@@ -1,47 +1,49 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-
-
-import { LottieComponent } from 'ngx-lottie';
+import { LottieComponent, provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-resumen',
   standalone: true,
+  imports: [CommonModule, IonicModule, LottieComponent],
+  providers: [
+    provideLottieOptions({ player: () => player })
+  ],
   templateUrl: './resumen.page.html',
   styleUrls: ['./resumen.page.scss'],
-  imports: [
-    CommonModule,
-    IonicModule,
-    LottieComponent
-  ],
 })
 export class ResumenPage {
-
-  usuario: string = "Invitado";
-  password: string = "****";
+  usuario: string = 'Invitado';
+  password: string = '****';
   recordatorios: any[] = [];
+  asignaturas: string[] = [];
 
-  animacion = {
-    path: 'assets/lottie/study.json',
-    loop: true,
-    autoplay: true
+  constructor(private router: Router) {} 
+
+  animacion = { 
+    path: 'assets/lottie/study.json', 
+    loop: true, 
+    autoplay: true 
   };
 
-constructor() {
-  // Recuperar usuario y contraseña
-  const user = localStorage.getItem("usuarioActivo");
-  const pass = localStorage.getItem("passwordActivo");
-  if (user) this.usuario = user;
-  if (pass) this.password = pass;
+  ngOnInit() {
+    const u = localStorage.getItem('usuarioActivo');
+    if (u) this.usuario = u;
 
-  // ✅ Recuperar la lista completa de recordatorios
-  const data = localStorage.getItem("recordatorios");
-  if (data) {
-    this.recordatorios = JSON.parse(data);
-  } else {
-    this.recordatorios = [];
+    const p = localStorage.getItem('passwordActivo');
+    if (p) this.password = p;
+
+    const r = localStorage.getItem('recordatorios');
+    if (r) this.recordatorios = JSON.parse(r);
+
+    const a = localStorage.getItem('asignaturas');
+    if (a) this.asignaturas = JSON.parse(a);
   }
-}
 
+  volverMenu() {
+    this.router.navigate(['/menu']); 
+  }
 }

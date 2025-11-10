@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LottieComponent, provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
 
-// Material
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -77,6 +77,10 @@ export class CalendarioPage {
   irAResumen() {
     this.router.navigate(['/resumen']);
   }
+
+  volverMenu() {
+  this.router.navigate(['/menu']);
+}
 
   animacion = {
     path: 'assets/lottie/calendar.json',
