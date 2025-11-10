@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     IonicModule,
-    RouterModule,  // ✅ ESTO ES LO QUE FALTABA
+    RouterModule,  
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

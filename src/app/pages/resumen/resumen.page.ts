@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-// ✅ Lottie (solo el componente, sin providers aquí)
+
 import { LottieComponent } from 'ngx-lottie';
 
 @Component({

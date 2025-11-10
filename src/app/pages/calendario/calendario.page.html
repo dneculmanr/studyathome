@@ -1,51 +1,65 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Calendario de Estudio 📚</ion-title>
+    <ion-title>Calendario de estudio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <h2>Agendar nueva actividad 📝</h2>
+  <div class="anim-calendar">
+  <ng-lottie [options]="animacion"></ng-lottie>
+  </div>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Fecha de la prueba</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="fechaSeleccionada">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Agregar Recordatorio</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
 
-  <ion-item>
-    <ion-label position="floating">Materia</ion-label>
-    <ion-input [(ngModel)]="materia"></ion-input>
+      <mat-form-field appearance="fill" class="full">
+        <mat-label>Fecha de la prueba</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="fechaSeleccionada">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <ion-item>
+        <ion-label position="floating">Materia</ion-label>
+        <ion-input [(ngModel)]="materia"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" color="success" class="ion-margin-top" (click)="guardarRecordatorio()">
+        Guardar Recordatorio ✅
+      </ion-button>
+
+      <ion-button expand="block" color="medium" (click)="irAResumen()">
+        Ir al Resumen 📄
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+<h2 class="ion-margin-top">Recordatorios Registrados</h2>
+
+<ion-list *ngIf="recordatorios.length > 0">
+  <ion-item *ngFor="let rec of recordatorios; let i = index">
+    <ion-label>
+      <h3>{{ rec.fecha }}</h3>
+      <p><strong>{{ rec.materia }}</strong> — {{ rec.descripcion }}</p>
+    </ion-label>
+
+    <ion-button color="danger" fill="clear" (click)="borrarRecordatorio(i)">
+      🗑
+    </ion-button>
+
   </ion-item>
+</ion-list>
 
-  <ion-item>
-    <ion-label position="floating">Descripción</ion-label>
-    <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
-  </ion-item>
-
-<ion-button expand="block" color="success" class="ion-margin-top" (click)="agregarRecordatorio()">
-  Guardar Recordatorio ✅
-</ion-button>
-
-<ion-button expand="block" color="medium" routerLink="/resumen">
-  Ver Resumen 📄
-</ion-button>
-
-
-  <h2 class="ion-margin-top">Recordatorios Registrados</h2>
-
-  <ion-list *ngIf="recordatorios.length > 0">
-    <ion-item *ngFor="let rec of recordatorios">
-      <ion-label>
-        <h3>{{ rec.fecha }}</h3>
-        <p><strong>{{ rec.materia }}</strong> — {{ rec.descripcion }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
-  <p *ngIf="recordatorios.length === 0">📭 Aún no hay recordatorios agregados.</p>
+<p *ngIf="recordatorios.length === 0">📭 Aún no hay recordatorios guardados.</p>
 
 </ion-content>
-
