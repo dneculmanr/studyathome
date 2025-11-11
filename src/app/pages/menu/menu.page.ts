@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-
 import { LottieComponent, provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
 
@@ -23,16 +22,18 @@ export class MenuPage {
 
   usuario: string = "Invitado";
 
-  
   animacionMenu = {
     path: 'assets/lottie/menu.json',
     loop: true,
     autoplay: true
   };
 
-  constructor(private router: Router) {
+  constructor(private router: Router) {}
+
+
+  ionViewWillEnter() {
     const user = localStorage.getItem("usuarioActivo");
-    if (user) this.usuario = user;
+    this.usuario = user ? user : "Invitado";
   }
 
   irCalendario() { this.router.navigate(['/calendario']); }
@@ -45,3 +46,4 @@ export class MenuPage {
     this.router.navigate(['/login']);
   }
 }
+
