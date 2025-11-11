@@ -24,7 +24,7 @@
       </mat-form-field>
 
       <ion-item>
-        <ion-label position="floating">Materia</ion-label>
+        <ion-label position="floating">Asignatura</ion-label>
         <ion-input [(ngModel)]="materia"></ion-input>
       </ion-item>
 
@@ -34,11 +34,11 @@
       </ion-item>
 
       <ion-button expand="block" color="success" class="ion-margin-top" (click)="guardarRecordatorio()">
-        Guardar Recordatorio ✅
+        Guardar Recordatorio 
       </ion-button>
 
       <ion-button expand="block" color="medium" (click)="irAResumen()">
-        Ir al Resumen 📄
+        Ir al Resumen 
       </ion-button>
 
     </ion-card-content>
@@ -53,17 +53,21 @@
       <p><strong>{{ rec.materia }}</strong> — {{ rec.descripcion }}</p>
     </ion-label>
 
-    <ion-button color="danger" fill="clear" (click)="borrarRecordatorio(i)">
-      🗑
+    <ion-button 
+      color="danger" 
+      size="small" 
+      fill="solid" 
+      (click)="eliminarRecordatorio(i)">
+      Borrar
     </ion-button>
 
   </ion-item>
 </ion-list>
 
-<p *ngIf="recordatorios.length === 0">📭 Aún no hay recordatorios guardados.</p>
+<p *ngIf="recordatorios.length === 0"> Aún no hay recordatorios guardados.</p>
 
 <ion-button expand="block" color="medium" class="ion-margin-top" (click)="volverMenu()">
-  ⬅️ Volver al Menú
+   Volver al Menú
 </ion-button>
 
 

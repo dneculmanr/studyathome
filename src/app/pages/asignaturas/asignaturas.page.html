@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Asignaturas 📚</ion-title>
+    <ion-title>Asignaturas </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,26 +18,33 @@
       </ion-item>
 
       <ion-button expand="block" color="success" class="ion-margin-top" (click)="agregarAsignatura()">
-        Guardar Asignatura ✅
+        Guardar Asignatura 
       </ion-button>
     </ion-card-content>
   </ion-card>
 
   <h2 class="ion-margin-top">Asignaturas Registradas</h2>
 
-  <ion-list *ngIf="asignaturas.length > 0">
-    <ion-item *ngFor="let asig of asignaturas; let i = index">
-      <ion-label>{{ asig }}</ion-label>
-      <ion-button fill="clear" color="danger" slot="end" (click)="eliminarAsignatura(i)">
-        🗑️
-      </ion-button>
-    </ion-item>
-  </ion-list>
+<ion-list>
+  <ion-item *ngFor="let asig of asignaturas; let i = index">
+    <ion-label>{{ asig }}</ion-label>
+
+    <ion-button 
+      color="danger" 
+      size="small" 
+      fill="solid" 
+      (click)="eliminarAsignatura(i)">
+      Borrar
+    </ion-button>
+
+  </ion-item>
+</ion-list>
+
 
   <p *ngIf="asignaturas.length === 0">📭 Aún no has agregado asignaturas.</p>
 
   <ion-button expand="block" color="medium" class="ion-margin-top" (click)="volverMenu()">
-  ⬅️ Volver al Menú
+   Volver al Menú
   </ion-button>
 
 

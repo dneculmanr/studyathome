@@ -48,7 +48,6 @@ export class AsignaturasPage {
     this.asignaturas.splice(i, 1);
     localStorage.setItem("asignaturas", JSON.stringify(this.asignaturas));
   }
-
   volverMenu() {
     this.router.navigate(['/menu']); 
   }

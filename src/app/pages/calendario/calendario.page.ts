@@ -69,8 +69,8 @@ export class CalendarioPage {
   }
 
 
-  borrarRecordatorio(index: number) {
-    this.recordatorios.splice(index, 1);
+  eliminarRecordatorio(i: number) {
+    this.recordatorios.splice(i, 1);
     localStorage.setItem("recordatorios", JSON.stringify(this.recordatorios));
   }
 
